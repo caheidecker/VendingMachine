@@ -4,6 +4,14 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "READY",
+					"strict" : false
+				},
+				{
+					"name" : "NOT_READY",
+					"strict" : false
+				},
+				{
 					"name" : "DISPLAY_DEPOSIT[1]",
 					"strict" : false
 				},
@@ -128,11 +136,11 @@
 					"strict" : false
 				},
 				{
-					"name" : "SET_BINARY_COST[1]",
+					"name" : "SET_BINARY_COST[2]",
 					"strict" : false
 				},
 				{
-					"name" : "SET_BINARY_COST[2]",
+					"name" : "SET_BINARY_COST[1]",
 					"strict" : false
 				},
 				{

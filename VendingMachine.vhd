@@ -1,14 +1,14 @@
 LIBRARY ieee;
 USE ieee.std_logic_1164.all;
 USE ieee.std_logic_unsigned.all;
---USE ieee.std_logic_signed.all;
 Entity VendingMachine is
 PORT( 	
       add_five        : IN std_logic;
 		add_ten         : IN std_logic;
 		SET_BINARY_COST : IN std_logic_vector(3 downto 0);
-		READY				 : OUT std_logic;
-		NOT_READY		 : OUT std_logic;
+		READY				 : OUT std_logic:='1';
+		NOT_READY		 : OUT std_logic:='1';
+		TURN_OFF_LEDS	 : OUT std_logic_vector(7 downto 0):=x"00";
 		DISPLAY_DEPOSIT : OUT std_logic_vector(15 downto 0);
       DISPLAY_CHANGE  : OUT std_logic_vector(15 downto 0);
 		DISPLAY_COST    : OUT std_logic_vector(15 downto 0));	
@@ -44,10 +44,9 @@ end process multiply5;
 
 count:process(add_five,add_ten)
 begin
-
 	if(COST > TOTAL) THEN
-		else if(add_five = '1') THEN TOTAL <= TOTAL + 5;
-			else if(add_ten = '1') THEN TOTAL <= TOTAL + 10;
+		else if(add_five = '0') THEN TOTAL <= TOTAL + 5;
+			else if(add_ten = '0') THEN TOTAL <= TOTAL + 10;
 				if(COST <= TOTAL) THEN TOTAL <= COST;
 				end if;
 			end if;
@@ -63,11 +62,14 @@ end process MAKE_CHANGE;
 isReady:process(TOTAL,COST)
 begin
 	if(TOTAL = COST) THEN READY <= '1';
-		else NOT_READY <= '1';
+		else READY <= '0';
+	if(TOTAL < COST) THEN NOT_READY <= '1';
+		else NOT_READY <= '0';
+	end if;
 	end if;
 end process isReady;
 
-hex_COST:process(COST)
+hex_COST:process(COST)-- HEX5,HEX4
 	begin
 		case COST is
 		when x"00"=> DISPLAY_COST <= "1100000011000000";--00
@@ -79,7 +81,7 @@ hex_COST:process(COST)
 		when x"1E"=> DISPLAY_COST <= "1011000011000000";--30
 		when x"23"=> DISPLAY_COST <= "1011000010010010";--35
 		when x"28"=> DISPLAY_COST <= "1001100111000000";--40
-   	when x"2D"=> DISPLAY_COST <= "1001100110010010";--45
+		when x"2D"=> DISPLAY_COST <= "1001100110010010";--45
 		when x"32"=> DISPLAY_COST <= "1001001011000000";--50
 		when x"37"=> DISPLAY_COST <= "1001001010010010";--55
 		when x"3C"=> DISPLAY_COST <= "1000001011000000";--60
@@ -90,7 +92,7 @@ hex_COST:process(COST)
 	end case;
 end process hex_COST;--end of display
 	
-hex_DEPOSIT:process(TOTAL)
+hex_DEPOSIT:process(TOTAL)-- HEX3, HEX2
 	begin
 		case TOTAL is
 		when x"00"=> DISPLAY_DEPOSIT <= "1100000011000000";--00
@@ -102,7 +104,7 @@ hex_DEPOSIT:process(TOTAL)
 		when x"1E"=> DISPLAY_DEPOSIT <= "1011000011000000";--30
 		when x"23"=> DISPLAY_DEPOSIT <= "1011000010010010";--35
 		when x"28"=> DISPLAY_DEPOSIT <= "1001100111000000";--40
-   	when x"2D"=> DISPLAY_DEPOSIT <= "1001100110010010";--45
+		when x"2D"=> DISPLAY_DEPOSIT <= "1001100110010010";--45
 		when x"32"=> DISPLAY_DEPOSIT <= "1001001011000000";--50
 		when x"37"=> DISPLAY_DEPOSIT <= "1001001010010010";--55
 		when x"3C"=> DISPLAY_DEPOSIT <= "1000001011000000";--60
@@ -113,7 +115,7 @@ hex_DEPOSIT:process(TOTAL)
 	end case;
 end process hex_DEPOSIT;--end of display
 	
-hex_CHANGE:process(CHANGE)
+hex_CHANGE:process(CHANGE)-- HEX1, HEX0
 	begin
 		case CHANGE is
       when x"00"=> DISPLAY_CHANGE <= "1100000011000000";--00
@@ -125,7 +127,7 @@ hex_CHANGE:process(CHANGE)
 		when x"1E"=> DISPLAY_CHANGE <= "1011000011000000";--30
 		when x"23"=> DISPLAY_CHANGE <= "1011000010010010";--35
 		when x"28"=> DISPLAY_CHANGE <= "1001100111000000";--40
-   	when x"2D"=> DISPLAY_CHANGE <= "1001100110010010";--45
+		when x"2D"=> DISPLAY_CHANGE <= "1001100110010010";--45
 		when x"32"=> DISPLAY_CHANGE <= "1001001011000000";--50
 		when x"37"=> DISPLAY_CHANGE <= "1001001010010010";--55
 		when x"3C"=> DISPLAY_CHANGE <= "1000001011000000";--60
