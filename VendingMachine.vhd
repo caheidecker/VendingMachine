@@ -7,7 +7,8 @@ PORT(
       add_five        : IN std_logic;
 		add_ten         : IN std_logic;
 		SET_BINARY_COST : IN std_logic_vector(3 downto 0);
-		READY				 : OUT std_logic_vector(1 downto 0);
+		READY				 : OUT std_logic;
+		NOT_READY		 : OUT std_logic;
 		DISPLAY_DEPOSIT : OUT std_logic_vector(15 downto 0);
       DISPLAY_CHANGE  : OUT std_logic_vector(15 downto 0);
 		DISPLAY_COST    : OUT std_logic_vector(15 downto 0));	
@@ -41,30 +42,30 @@ begin
 	end case;
 end process multiply5;
 
-count5:process(add_five)
+count:process(add_five,add_ten)
 begin
-    if(add_five = '1') THEN
-		if(TOTAL >= COST) THEN TOTAL <= COST;
-			if(TOTAL > COST) THEN TOTAL <= TOTAL + 5; 
-			end if;
-		end if;
-  end if;
-end process count5;--end of count5
 
-count10:process(add_ten)
-begin
-    if(add_ten = '1') THEN
-		if(TOTAL >= COST) THEN TOTAL <= COST;
-			if(TOTAL > COST) THEN TOTAL <= TOTAL + 10; 
+	if(COST > TOTAL) THEN
+		else if(add_five = '1') THEN TOTAL <= TOTAL + 5;
+			else if(add_ten = '1') THEN TOTAL <= TOTAL + 10;
+				if(COST <= TOTAL) THEN TOTAL <= COST;
+				end if;
 			end if;
 		end if;
 	end if;
-end process count10;--end of count5
+end process count;--end of count
 
 MAKE_CHANGE:process(TOTAL,COST)
 begin
 	CHANGE <= (COST - TOTAL);
 end process MAKE_CHANGE;
+
+isReady:process(TOTAL,COST)
+begin
+	if(TOTAL = COST) THEN READY <= '1';
+		else NOT_READY <= '1';
+	end if;
+end process isReady;
 
 hex_COST:process(COST)
 	begin
@@ -85,54 +86,55 @@ hex_COST:process(COST)
 		when x"41"=> DISPLAY_COST <= "1000001010010010";--65
 		when x"46"=> DISPLAY_COST <= "1111100011000000";--70
 		when x"4B"=> DISPLAY_COST <= "1111100010010010";--75
-		when others => DISPLAY_COST <= "1100000011000000" ; --display 00
-		end case;
-	end process hex_COST;--end of display
+		when others => DISPLAY_COST <= "1100000011000000"; --display 00
+	end case;
+end process hex_COST;--end of display
 	
-	hex_DEPOSIT:process(TOTAL)
+hex_DEPOSIT:process(TOTAL)
 	begin
 		case TOTAL is
---		   when "00001"=> DISPLAY_DEPOSIT <= "1100000011111001" ; --display 01
---		   when "00010"=> DISPLAY_DEPOSIT <= "1100000010100100" ; --display 02
---		   when "00011"=> DISPLAY_DEPOSIT <= "1100000010110000" ; --display 03
---		   when "00100"=> DISPLAY_DEPOSIT <= "1100000010011001" ; --display 04
---		   when "00101"=> DISPLAY_DEPOSIT <= "1100000010010010" ; --display 05
---		   when "00110"=> DISPLAY_DEPOSIT <= "1100000010000010" ; --display 06
---		   when "00111"=> DISPLAY_DEPOSIT <= "1100000011111000" ; --display 07
---	      when "01000"=> DISPLAY_DEPOSIT <= "1100000010000000" ; --display 08
---		   when "01001"=> DISPLAY_DEPOSIT <= "1100000010011000" ; --display 09
---		   when "01010"=> DISPLAY_DEPOSIT <= "1111100111000000" ; --display 10
---		   when "01011"=> DISPLAY_DEPOSIT <= "1111100111111001" ; --display 11
---		   when "01100"=> DISPLAY_DEPOSIT <= "1111100110100100" ; --display 12
---		   when "01101"=> DISPLAY_DEPOSIT <= "1111100110110000" ; --display 13
---		   when "01110"=> DISPLAY_DEPOSIT <= "1111100110011001" ; --display 14
---		   when "01111"=> DISPLAY_DEPOSIT <= "1111100110010010" ; --display 15
---		   when "10000"=> DISPLAY_DEPOSIT <= "1111100110000010" ; --display 16
---		   when "10001"=> DISPLAY_DEPOSIT <= "1111100111111000" ; --display 17
---		   when "10010"=> DISPLAY_DEPOSIT <= "1111100110000000" ; --display 18
---		   when "10011"=> DISPLAY_DEPOSIT <= "1111100110011000" ; --display 19
---		   when "10100"=> DISPLAY_DEPOSIT <= "1010010011000000" ; --display 20
---		   when "10101"=> DISPLAY_DEPOSIT <= "1010010011111001" ; --display 21
---		   when "10110"=> DISPLAY_DEPOSIT <= "1010010010100100" ; --display 22
---		   when "10111"=> DISPLAY_DEPOSIT <= "1010010010110000" ; --display 23
---	      when "11000"=> DISPLAY_DEPOSIT <= "1010010010011001" ; --display 24
---		   when "11001"=> DISPLAY_DEPOSIT <= "1010010010010010" ; --display 25
---		   when "11010"=> DISPLAY_DEPOSIT <= "1010010010000010" ; --display 26
---		   when "11011"=> DISPLAY_DEPOSIT <= "1010010011111000" ; --display 27
---		   when "11100"=> DISPLAY_DEPOSIT <= "1010010010000000" ; --display 28
---		   when "11101"=> DISPLAY_DEPOSIT <= "1010010010011000" ; --display 29
---		   when "11110"=> DISPLAY_DEPOSIT <= "1011000011000000" ; --dislpay 30
-			when others => DISPLAY_DEPOSIT <= "1100000011000000" ; --display 00
-		end case;
-	end process hex_DEPOSIT;--end of display
+		when x"00"=> DISPLAY_DEPOSIT <= "1100000011000000";--00
+		when x"05"=> DISPLAY_DEPOSIT <= "1100000010010010";--05
+		when x"0A"=> DISPLAY_DEPOSIT <= "1111100111000000";--10
+		when x"0F"=> DISPLAY_DEPOSIT <= "1111100110010010";--15
+		when x"14"=> DISPLAY_DEPOSIT <= "1010010011000000";--20
+		when x"19"=> DISPLAY_DEPOSIT <= "1010010010010010";--25
+		when x"1E"=> DISPLAY_DEPOSIT <= "1011000011000000";--30
+		when x"23"=> DISPLAY_DEPOSIT <= "1011000010010010";--35
+		when x"28"=> DISPLAY_DEPOSIT <= "1001100111000000";--40
+   	when x"2D"=> DISPLAY_DEPOSIT <= "1001100110010010";--45
+		when x"32"=> DISPLAY_DEPOSIT <= "1001001011000000";--50
+		when x"37"=> DISPLAY_DEPOSIT <= "1001001010010010";--55
+		when x"3C"=> DISPLAY_DEPOSIT <= "1000001011000000";--60
+		when x"41"=> DISPLAY_DEPOSIT <= "1000001010010010";--65
+		when x"46"=> DISPLAY_DEPOSIT <= "1111100011000000";--70
+		when x"4B"=> DISPLAY_DEPOSIT <= "1111100010010010";--75
+		when others => DISPLAY_DEPOSIT <= "1100000011000000"; --display 00
+	end case;
+end process hex_DEPOSIT;--end of display
 	
 hex_CHANGE:process(CHANGE)
 	begin
 		case CHANGE is
-         --when 
-			when others => DISPLAY_CHANGE <= "1100000011000000" ; --display 00
-		end case;
-	end process hex_CHANGE;--end of display
+      when x"00"=> DISPLAY_CHANGE <= "1100000011000000";--00
+		when x"05"=> DISPLAY_CHANGE <= "1100000010010010";--05
+		when x"0A"=> DISPLAY_CHANGE <= "1111100111000000";--10
+		when x"0F"=> DISPLAY_CHANGE <= "1111100110010010";--15
+		when x"14"=> DISPLAY_CHANGE <= "1010010011000000";--20
+		when x"19"=> DISPLAY_CHANGE <= "1010010010010010";--25
+		when x"1E"=> DISPLAY_CHANGE <= "1011000011000000";--30
+		when x"23"=> DISPLAY_CHANGE <= "1011000010010010";--35
+		when x"28"=> DISPLAY_CHANGE <= "1001100111000000";--40
+   	when x"2D"=> DISPLAY_CHANGE <= "1001100110010010";--45
+		when x"32"=> DISPLAY_CHANGE <= "1001001011000000";--50
+		when x"37"=> DISPLAY_CHANGE <= "1001001010010010";--55
+		when x"3C"=> DISPLAY_CHANGE <= "1000001011000000";--60
+		when x"41"=> DISPLAY_CHANGE <= "1000001010010010";--65
+		when x"46"=> DISPLAY_CHANGE <= "1111100011000000";--70
+		when x"4B"=> DISPLAY_CHANGE <= "1111100010010010";--75
+		when others => DISPLAY_CHANGE <= "1100000011000000"; --display 00
+	end case;
+end process hex_CHANGE;--end of display
 	
 END OUTPUT; 
 

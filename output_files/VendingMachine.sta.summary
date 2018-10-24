@@ -2,4 +2,40 @@
 Timing Analyzer Summary
 ------------------------------------------------------------
 
+Type  : Slow 1200mV 85C Model Setup 'SET_BINARY_COST[0]'
+Slack : -6.199
+TNS   : -43.273
+
+Type  : Slow 1200mV 85C Model Hold 'SET_BINARY_COST[0]'
+Slack : 0.540
+TNS   : 0.000
+
+Type  : Slow 1200mV 85C Model Minimum Pulse Width 'SET_BINARY_COST[0]'
+Slack : -3.000
+TNS   : -22.076
+
+Type  : Slow 1200mV 0C Model Setup 'SET_BINARY_COST[0]'
+Slack : -5.548
+TNS   : -38.547
+
+Type  : Slow 1200mV 0C Model Hold 'SET_BINARY_COST[0]'
+Slack : 0.582
+TNS   : 0.000
+
+Type  : Slow 1200mV 0C Model Minimum Pulse Width 'SET_BINARY_COST[0]'
+Slack : -3.000
+TNS   : -17.433
+
+Type  : Fast 1200mV 0C Model Setup 'SET_BINARY_COST[0]'
+Slack : -3.161
+TNS   : -21.946
+
+Type  : Fast 1200mV 0C Model Hold 'SET_BINARY_COST[0]'
+Slack : 0.203
+TNS   : 0.000
+
+Type  : Fast 1200mV 0C Model Minimum Pulse Width 'SET_BINARY_COST[0]'
+Slack : -3.000
+TNS   : -10.248
+
 ------------------------------------------------------------

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for VendingMachine
-Wed Oct 24 09:09:23 2018
+Wed Oct 24 10:29:58 2018
 Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
 
 
@@ -13,10 +13,12 @@ Quartus Prime Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
   5. Analysis & Synthesis Source Files Read
   6. Analysis & Synthesis Resource Usage Summary
   7. Analysis & Synthesis Resource Utilization by Entity
-  8. General Register Statistics
-  9. Post-Synthesis Netlist Statistics for Top Partition
- 10. Elapsed Time Per Partition
- 11. Analysis & Synthesis Messages
+  8. User-Specified and Inferred Latches
+  9. General Register Statistics
+ 10. Multiplexer Restructuring Statistics (Restructuring Performed)
+ 11. Post-Synthesis Netlist Statistics for Top Partition
+ 12. Elapsed Time Per Partition
+ 13. Analysis & Synthesis Messages
 
 
 
@@ -42,13 +44,13 @@ refer to the applicable agreement for further details.
 +----------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                     ;
 +------------------------------------+---------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Wed Oct 24 09:09:23 2018       ;
+; Analysis & Synthesis Status        ; Successful - Wed Oct 24 10:29:57 2018       ;
 ; Quartus Prime Version              ; 18.0.0 Build 614 04/24/2018 SJ Lite Edition ;
 ; Revision Name                      ; VendingMachine                              ;
 ; Top-level Entity Name              ; VendingMachine                              ;
 ; Family                             ; MAX 10                                      ;
-; Total logic elements               ; 7                                           ;
-;     Total combinational functions  ; 7                                           ;
+; Total logic elements               ; 126                                         ;
+;     Total combinational functions  ; 126                                         ;
 ;     Dedicated logic registers      ; 0                                           ;
 ; Total registers                    ; 0                                           ;
 ; Total pins                         ; 56                                          ;
@@ -156,10 +158,12 @@ refer to the applicable agreement for further details.
 ; Maximum allowed            ; 4           ;
 ;                            ;             ;
 ; Average used               ; 1.00        ;
-; Maximum used               ; 1           ;
+; Maximum used               ; 4           ;
 ;                            ;             ;
 ; Usage by Processor         ; % Time Used ;
 ;     Processor 1            ; 100.0%      ;
+;     Processor 2            ;   0.0%      ;
+;     Processors 3-4         ;   0.0%      ;
 +----------------------------+-------------+
 
 
@@ -172,36 +176,36 @@ refer to the applicable agreement for further details.
 +----------------------------------+-----------------+-----------------+-----------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                            ;
-+---------------------------------------------+--------------------------+
-; Resource                                    ; Usage                    ;
-+---------------------------------------------+--------------------------+
-; Estimated Total logic elements              ; 7                        ;
-;                                             ;                          ;
-; Total combinational functions               ; 7                        ;
-; Logic element usage by number of LUT inputs ;                          ;
-;     -- 4 input functions                    ; 0                        ;
-;     -- 3 input functions                    ; 7                        ;
-;     -- <=2 input functions                  ; 0                        ;
-;                                             ;                          ;
-; Logic elements by mode                      ;                          ;
-;     -- normal mode                          ; 7                        ;
-;     -- arithmetic mode                      ; 0                        ;
-;                                             ;                          ;
-; Total registers                             ; 0                        ;
-;     -- Dedicated logic registers            ; 0                        ;
-;     -- I/O registers                        ; 0                        ;
-;                                             ;                          ;
-; I/O pins                                    ; 56                       ;
-;                                             ;                          ;
-; Embedded Multiplier 9-bit elements          ; 0                        ;
-;                                             ;                          ;
-; Maximum fan-out node                        ; SET_BINARY_COST[1]~input ;
-; Maximum fan-out                             ; 7                        ;
-; Total fan-out                               ; 87                       ;
-; Average fan-out                             ; 0.73                     ;
-+---------------------------------------------+--------------------------+
++--------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary            ;
++---------------------------------------------+----------+
+; Resource                                    ; Usage    ;
++---------------------------------------------+----------+
+; Estimated Total logic elements              ; 126      ;
+;                                             ;          ;
+; Total combinational functions               ; 126      ;
+; Logic element usage by number of LUT inputs ;          ;
+;     -- 4 input functions                    ; 64       ;
+;     -- 3 input functions                    ; 48       ;
+;     -- <=2 input functions                  ; 14       ;
+;                                             ;          ;
+; Logic elements by mode                      ;          ;
+;     -- normal mode                          ; 106      ;
+;     -- arithmetic mode                      ; 20       ;
+;                                             ;          ;
+; Total registers                             ; 0        ;
+;     -- Dedicated logic registers            ; 0        ;
+;     -- I/O registers                        ; 0        ;
+;                                             ;          ;
+; I/O pins                                    ; 56       ;
+;                                             ;          ;
+; Embedded Multiplier 9-bit elements          ; 0        ;
+;                                             ;          ;
+; Maximum fan-out node                        ; TOTAL[3] ;
+; Maximum fan-out                             ; 19       ;
+; Total fan-out                               ; 512      ;
+; Average fan-out                             ; 2.15     ;
++---------------------------------------------+----------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -209,9 +213,27 @@ refer to the applicable agreement for further details.
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+----------------+--------------+
 ; Compilation Hierarchy Node ; Combinational ALUTs ; Dedicated Logic Registers ; Memory Bits ; UFM Blocks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; ADC blocks ; Full Hierarchy Name ; Entity Name    ; Library Name ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+----------------+--------------+
-; |VendingMachine            ; 7 (7)               ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 56   ; 0            ; 0          ; |VendingMachine     ; VendingMachine ; work         ;
+; |VendingMachine            ; 126 (126)           ; 0 (0)                     ; 0           ; 0          ; 0            ; 0       ; 0         ; 56   ; 0            ; 0          ; |VendingMachine     ; VendingMachine ; work         ;
 +----------------------------+---------------------+---------------------------+-------------+------------+--------------+---------+-----------+------+--------------+------------+---------------------+----------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
+
+
++---------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                               ;
++----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                         ; Latch Enable Signal ; Free of Timing Hazards ;
++----------------------------------------------------+---------------------+------------------------+
+; TOTAL[0]                                           ; TOTAL[1]            ; yes                    ;
+; TOTAL[7]                                           ; TOTAL[1]            ; yes                    ;
+; TOTAL[4]                                           ; TOTAL[1]            ; yes                    ;
+; TOTAL[6]                                           ; TOTAL[1]            ; yes                    ;
+; TOTAL[5]                                           ; TOTAL[1]            ; yes                    ;
+; TOTAL[1]                                           ; TOTAL[1]            ; yes                    ;
+; TOTAL[2]                                           ; TOTAL[1]            ; yes                    ;
+; TOTAL[3]                                           ; TOTAL[1]            ; yes                    ;
+; Number of user-specified and inferred latches = 8  ;                     ;                        ;
++----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +------------------------------------------------------+
@@ -229,20 +251,34 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------------------------+-------+
 
 
++------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                           ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+; 3:1                ; 6 bits    ; 12 LEs        ; 12 LEs               ; 0 LEs                  ; No         ; |VendingMachine|TOTAL[6]   ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------+
+
+
 +-----------------------------------------------------+
 ; Post-Synthesis Netlist Statistics for Top Partition ;
 +-----------------------+-----------------------------+
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 56                          ;
-; cycloneiii_lcell_comb ; 10                          ;
-;     normal            ; 10                          ;
+; cycloneiii_lcell_comb ; 131                         ;
+;     arith             ; 20                          ;
+;         2 data inputs ; 7                           ;
+;         3 data inputs ; 13                          ;
+;     normal            ; 111                         ;
 ;         0 data inputs ; 2                           ;
-;         1 data inputs ; 1                           ;
-;         3 data inputs ; 7                           ;
+;         1 data inputs ; 5                           ;
+;         2 data inputs ; 5                           ;
+;         3 data inputs ; 35                          ;
+;         4 data inputs ; 64                          ;
 ;                       ;                             ;
-; Max LUT depth         ; 1.00                        ;
-; Average LUT depth     ; 0.86                        ;
+; Max LUT depth         ; 6.30                        ;
+; Average LUT depth     ; 4.18                        ;
 +-----------------------+-----------------------------+
 
 
@@ -261,7 +297,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus Prime Analysis & Synthesis
     Info: Version 18.0.0 Build 614 04/24/2018 SJ Lite Edition
-    Info: Processing started: Wed Oct 24 09:08:50 2018
+    Info: Processing started: Wed Oct 24 10:29:34 2018
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off VendingMachine -c VendingMachine
 Info (125069): Default assignment values were changed in the current version of the Quartus Prime software -- changes to default assignments values are contained in file c:/intelfpga_lite/18.0/quartus/bin64/assignment_defaults.qdf
 Warning (18236): Number of processors has not been specified which may cause overloading on shared machines.  Set the global assignment NUM_PARALLEL_PROCESSORS in your QSF to an appropriate value for best performance.
@@ -269,65 +305,76 @@ Info (20030): Parallel compilation is enabled and will use 4 of the 4 processors
 Info (12021): Found 1 design units, including 1 entities, in source file de10_lite_golden_top.v
     Info (12023): Found entity 1: DE10_LITE_Golden_Top File: Z:/Documents/Quartus Projects/VendingMachine/DE10_LITE_Golden_Top.v Line: 29
 Info (12021): Found 2 design units, including 1 entities, in source file vendingmachine.vhd
-    Info (12022): Found design unit 1: VendingMachine-OUTPUT File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 15
+    Info (12022): Found design unit 1: VendingMachine-OUTPUT File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 16
     Info (12023): Found entity 1: VendingMachine File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 5
 Info (12127): Elaborating entity "VendingMachine" for the top level hierarchy
-Warning (10541): VHDL Signal Declaration warning at VendingMachine.vhd(10): used implicit default value for signal "READY" because signal was never assigned a value or an explicit default value. Use of implicit default value may introduce unintended design optimizations. File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 10
+Warning (10492): VHDL Process Statement warning at VendingMachine.vhd(48): signal "COST" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 48
+Warning (10492): VHDL Process Statement warning at VendingMachine.vhd(48): signal "TOTAL" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 48
+Warning (10492): VHDL Process Statement warning at VendingMachine.vhd(49): signal "TOTAL" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 49
+Warning (10492): VHDL Process Statement warning at VendingMachine.vhd(50): signal "TOTAL" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 50
+Warning (10492): VHDL Process Statement warning at VendingMachine.vhd(51): signal "COST" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 51
+Warning (10492): VHDL Process Statement warning at VendingMachine.vhd(51): signal "TOTAL" is read inside the Process Statement but isn't in the Process Statement's sensitivity list File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 51
+Warning (10631): VHDL Process Statement warning at VendingMachine.vhd(45): inferring latch(es) for signal or variable "TOTAL", which holds its previous value in one or more paths through the process File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Warning (10631): VHDL Process Statement warning at VendingMachine.vhd(63): inferring latch(es) for signal or variable "READY", which holds its previous value in one or more paths through the process File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 63
+Warning (10631): VHDL Process Statement warning at VendingMachine.vhd(63): inferring latch(es) for signal or variable "NOT_READY", which holds its previous value in one or more paths through the process File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 63
+Info (10041): Inferred latch for "NOT_READY" at VendingMachine.vhd(63) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 63
+Info (10041): Inferred latch for "READY" at VendingMachine.vhd(63) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 63
+Info (10041): Inferred latch for "TOTAL[0]" at VendingMachine.vhd(45) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Info (10041): Inferred latch for "TOTAL[1]" at VendingMachine.vhd(45) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Info (10041): Inferred latch for "TOTAL[2]" at VendingMachine.vhd(45) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Info (10041): Inferred latch for "TOTAL[3]" at VendingMachine.vhd(45) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Info (10041): Inferred latch for "TOTAL[4]" at VendingMachine.vhd(45) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Info (10041): Inferred latch for "TOTAL[5]" at VendingMachine.vhd(45) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Info (10041): Inferred latch for "TOTAL[6]" at VendingMachine.vhd(45) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Info (10041): Inferred latch for "TOTAL[7]" at VendingMachine.vhd(45) File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+Warning (13012): Latch TOTAL[0] has unsafe behavior File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal add_five File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
+Warning (13012): Latch TOTAL[7] has unsafe behavior File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal add_five File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
+Warning (13012): Latch TOTAL[4] has unsafe behavior File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal add_five File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
+Warning (13012): Latch TOTAL[6] has unsafe behavior File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal add_five File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
+Warning (13012): Latch TOTAL[5] has unsafe behavior File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal add_five File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
+Warning (13012): Latch TOTAL[1] has unsafe behavior File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal add_five File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
+Warning (13012): Latch TOTAL[2] has unsafe behavior File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal add_five File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
+Warning (13012): Latch TOTAL[3] has unsafe behavior File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 45
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal add_five File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
 Warning (13024): Output pins are stuck at VCC or GND
-    Warning (13410): Pin "READY[0]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 10
-    Warning (13410): Pin "READY[1]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 10
-    Warning (13410): Pin "DISPLAY_DEPOSIT[0]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[1]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[2]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[3]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[4]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[5]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[6]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[7]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[8]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[9]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[10]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[11]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[12]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[13]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[14]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_DEPOSIT[15]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
-    Warning (13410): Pin "DISPLAY_CHANGE[0]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[1]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[2]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[3]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[4]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[5]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[6]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[7]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[8]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[9]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[10]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[11]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[12]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[13]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[14]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_CHANGE[15]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
-    Warning (13410): Pin "DISPLAY_COST[0]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
-    Warning (13410): Pin "DISPLAY_COST[2]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
-    Warning (13410): Pin "DISPLAY_COST[3]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
-    Warning (13410): Pin "DISPLAY_COST[5]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
-    Warning (13410): Pin "DISPLAY_COST[7]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
-    Warning (13410): Pin "DISPLAY_COST[15]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
+    Warning (13410): Pin "READY" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 10
+    Warning (13410): Pin "NOT_READY" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 11
+    Warning (13410): Pin "DISPLAY_DEPOSIT[0]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
+    Warning (13410): Pin "DISPLAY_DEPOSIT[2]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
+    Warning (13410): Pin "DISPLAY_DEPOSIT[3]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
+    Warning (13410): Pin "DISPLAY_DEPOSIT[5]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
+    Warning (13410): Pin "DISPLAY_DEPOSIT[7]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
+    Warning (13410): Pin "DISPLAY_DEPOSIT[15]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 12
+    Warning (13410): Pin "DISPLAY_CHANGE[0]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
+    Warning (13410): Pin "DISPLAY_CHANGE[2]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
+    Warning (13410): Pin "DISPLAY_CHANGE[3]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
+    Warning (13410): Pin "DISPLAY_CHANGE[5]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
+    Warning (13410): Pin "DISPLAY_CHANGE[7]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
+    Warning (13410): Pin "DISPLAY_CHANGE[15]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 13
+    Warning (13410): Pin "DISPLAY_COST[0]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 14
+    Warning (13410): Pin "DISPLAY_COST[2]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 14
+    Warning (13410): Pin "DISPLAY_COST[3]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 14
+    Warning (13410): Pin "DISPLAY_COST[5]" is stuck at GND File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 14
+    Warning (13410): Pin "DISPLAY_COST[7]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 14
+    Warning (13410): Pin "DISPLAY_COST[15]" is stuck at VCC File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 14
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 2 input pin(s) that do not drive logic
-    Warning (15610): No output dependent on input pin "add_five" File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 7
-    Warning (15610): No output dependent on input pin "add_ten" File: Z:/Documents/Quartus Projects/VendingMachine/VendingMachine.vhd Line: 8
-Info (21057): Implemented 63 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 182 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 6 input pins
     Info (21059): Implemented 50 output pins
-    Info (21061): Implemented 7 logic cells
-Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 46 warnings
-    Info: Peak virtual memory: 4823 megabytes
-    Info: Processing ended: Wed Oct 24 09:09:23 2018
-    Info: Elapsed time: 00:00:33
+    Info (21061): Implemented 126 logic cells
+Info: Quartus Prime Analysis & Synthesis was successful. 0 errors, 47 warnings
+    Info: Peak virtual memory: 4811 megabytes
+    Info: Processing ended: Wed Oct 24 10:29:58 2018
+    Info: Elapsed time: 00:00:24
     Info: Total CPU time (on all processors): 00:00:37
 
 

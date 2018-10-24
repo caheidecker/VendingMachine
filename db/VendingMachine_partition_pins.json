@@ -4,6 +4,86 @@
 			"name" : "Top",
 			"pins" : [
 				{
+					"name" : "DISPLAY_DEPOSIT[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[4]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[6]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[8]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[9]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[10]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[11]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[12]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[13]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_DEPOSIT[14]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[1]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[4]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[6]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[8]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[9]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[10]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[11]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[12]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[13]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[14]",
+					"strict" : false
+				},
+				{
 					"name" : "DISPLAY_COST[1]",
 					"strict" : false
 				},
@@ -57,6 +137,14 @@
 				},
 				{
 					"name" : "SET_BINARY_COST[3]",
+					"strict" : false
+				},
+				{
+					"name" : "add_five",
+					"strict" : false
+				},
+				{
+					"name" : "add_ten",
 					"strict" : false
 				}
 			]
