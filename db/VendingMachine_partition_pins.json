@@ -20,6 +20,14 @@
 					"strict" : false
 				},
 				{
+					"name" : "DISPLAY_COST[9]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_COST[10]",
+					"strict" : false
+				},
+				{
 					"name" : "DISPLAY_COST[11]",
 					"strict" : false
 				},
@@ -32,7 +40,15 @@
 					"strict" : false
 				},
 				{
+					"name" : "DISPLAY_COST[14]",
+					"strict" : false
+				},
+				{
 					"name" : "SET_BINARY_COST[0]",
+					"strict" : false
+				},
+				{
+					"name" : "SET_BINARY_COST[1]",
 					"strict" : false
 				},
 				{
@@ -41,10 +57,6 @@
 				},
 				{
 					"name" : "SET_BINARY_COST[3]",
-					"strict" : false
-				},
-				{
-					"name" : "SET_BINARY_COST[1]",
 					"strict" : false
 				}
 			]

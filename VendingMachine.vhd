@@ -21,10 +21,22 @@ BEGIN
 multiply5:process(SET_BINARY_COST)
 begin
 	case SET_BINARY_COST is
-		when "0000" => COST <= x"00";
-		when "0001" => COST <= x"05";
-		when "0010" => COST <= x"0A";
-		when "0011" => COST <= x"0F";
+		when "0000" => COST <= x"00";--0
+		when "0001" => COST <= x"05";--5
+		when "0010" => COST <= x"0A";--10
+		when "0011" => COST <= x"0F";--15
+		when "0100" => COST <= x"14";--20
+		when "0101" => COST <= x"19";--25
+		when "0110" => COST <= x"1E";--30
+		when "0111" => COST <= x"23";--35
+		when "1000" => COST <= x"28";--40
+		when "1001" => COST <= x"2D";--45
+		when "1010" => COST <= x"32";--50
+		when "1011" => COST <= x"37";--55
+		when "1100" => COST <= x"3C";--60
+		when "1101" => COST <= x"41";--65
+		when "1110" => COST <= x"46";--70
+		when "1111" => COST <= x"4B";--75
 		when others => COST <= x"00";
 	end case;
 end process multiply5;
@@ -57,13 +69,23 @@ end process MAKE_CHANGE;
 hex_COST:process(COST)
 	begin
 		case COST is
-		   when x"05"=> DISPLAY_COST <= "1100000010010010" ; --display 05
-		   when x"0A"=> DISPLAY_COST <= "1111100111000000" ; --display 10
-		   when x"15"=> DISPLAY_COST <= "1111100110010010" ; --display 15
-		   when x"20"=> DISPLAY_COST <= "1010010011000000" ; --display 20
-		   when x"25"=> DISPLAY_COST <= "1010010010010010" ; --display 25
-		   when x"30"=> DISPLAY_COST <= "1011000011000000" ; --dislpay 30
-			when others => DISPLAY_COST <= "1100000011000000" ; --display 00
+		when x"00"=> DISPLAY_COST <= "1100000011000000";--00
+		when x"05"=> DISPLAY_COST <= "1100000010010010";--05
+		when x"0A"=> DISPLAY_COST <= "1111100111000000";--10
+		when x"0F"=> DISPLAY_COST <= "1111100110010010";--15
+		when x"14"=> DISPLAY_COST <= "1010010011000000";--20
+		when x"19"=> DISPLAY_COST <= "1010010010010010";--25
+		when x"1E"=> DISPLAY_COST <= "1011000011000000";--30
+		when x"23"=> DISPLAY_COST <= "1011000010010010";--35
+		when x"28"=> DISPLAY_COST <= "1001100111000000";--40
+   	when x"2D"=> DISPLAY_COST <= "1001100110010010";--45
+		when x"32"=> DISPLAY_COST <= "1001001011000000";--50
+		when x"37"=> DISPLAY_COST <= "1001001010010010";--55
+		when x"3C"=> DISPLAY_COST <= "1000001011000000";--60
+		when x"41"=> DISPLAY_COST <= "1000001010010010";--65
+		when x"46"=> DISPLAY_COST <= "1111100011000000";--70
+		when x"4B"=> DISPLAY_COST <= "1111100010010010";--75
+		when others => DISPLAY_COST <= "1100000011000000" ; --display 00
 		end case;
 	end process hex_COST;--end of display
 	
