@@ -12,6 +12,70 @@
 					"strict" : false
 				},
 				{
+					"name" : "CHANGE[0]",
+					"strict" : false
+				},
+				{
+					"name" : "CHANGE[1]",
+					"strict" : false
+				},
+				{
+					"name" : "CHANGE[2]",
+					"strict" : false
+				},
+				{
+					"name" : "CHANGE[3]",
+					"strict" : false
+				},
+				{
+					"name" : "CHANGE[4]",
+					"strict" : false
+				},
+				{
+					"name" : "CHANGE[5]",
+					"strict" : false
+				},
+				{
+					"name" : "CHANGE[6]",
+					"strict" : false
+				},
+				{
+					"name" : "CHANGE[7]",
+					"strict" : false
+				},
+				{
+					"name" : "TOTAL[0]",
+					"strict" : false
+				},
+				{
+					"name" : "TOTAL[1]",
+					"strict" : false
+				},
+				{
+					"name" : "TOTAL[2]",
+					"strict" : false
+				},
+				{
+					"name" : "TOTAL[3]",
+					"strict" : false
+				},
+				{
+					"name" : "TOTAL[4]",
+					"strict" : false
+				},
+				{
+					"name" : "TOTAL[5]",
+					"strict" : false
+				},
+				{
+					"name" : "TOTAL[6]",
+					"strict" : false
+				},
+				{
+					"name" : "TOTAL[7]",
+					"strict" : false
+				},
+				{
 					"name" : "DISPLAY_DEPOSIT[1]",
 					"strict" : false
 				},
@@ -52,11 +116,27 @@
 					"strict" : false
 				},
 				{
+					"name" : "DISPLAY_CHANGE[0]",
+					"strict" : false
+				},
+				{
 					"name" : "DISPLAY_CHANGE[1]",
 					"strict" : false
 				},
 				{
+					"name" : "DISPLAY_CHANGE[2]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[3]",
+					"strict" : false
+				},
+				{
 					"name" : "DISPLAY_CHANGE[4]",
+					"strict" : false
+				},
+				{
+					"name" : "DISPLAY_CHANGE[5]",
 					"strict" : false
 				},
 				{
@@ -136,15 +216,19 @@
 					"strict" : false
 				},
 				{
-					"name" : "SET_BINARY_COST[2]",
-					"strict" : false
-				},
-				{
 					"name" : "SET_BINARY_COST[1]",
 					"strict" : false
 				},
 				{
+					"name" : "SET_BINARY_COST[2]",
+					"strict" : false
+				},
+				{
 					"name" : "SET_BINARY_COST[3]",
+					"strict" : false
+				},
+				{
+					"name" : "change_switch",
 					"strict" : false
 				},
 				{
